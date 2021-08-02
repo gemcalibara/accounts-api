@@ -15,7 +15,6 @@ class AccountController extends Controller
      */
     public function index()
     {
-
         $accounts = Account::select('id', 'account_name')
                                 ->withSum('transactions', 'amount')
                                 ->get()
