@@ -67,7 +67,18 @@ class AccountController extends Controller
     {
         $account = Account::findOrFail($id)->transactions;
 
-        return response()->json($account);
+        $collection = collect($account);
+
+        $data = $collection->map(function($item, $key) {
+  
+            return ['id'            => $item->id, 
+                    'account_id'    => $item->account_id,
+                    'date'          => $item->date,
+                    'description'   => $item->description,
+                    'amount'        => $item->amount];
+        });
+
+        return response()->json($data);
     }
 
 }

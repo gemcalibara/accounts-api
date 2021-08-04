@@ -23,4 +23,15 @@ class Transaction extends Model
         return $this->belongsTo(Account::class, 'account_id');
     }
 
+    /**
+     * Get the amount to double value.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function getAmountAttribute($value)
+    {
+        return doubleval($value);
+    }
+
 }
