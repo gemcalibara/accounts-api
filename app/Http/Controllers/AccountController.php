@@ -12,7 +12,7 @@ class AccountController extends Controller
      * __construct
      *
      * @param  mixed $account
-     * @return void
+     * @return App\Models\Account
      */
     public function __construct(Account $account)
     {
@@ -28,9 +28,7 @@ class AccountController extends Controller
     {
         $accounts = $this->account->getTotalAmountOfTransactions()->get();
 
-        $collection = collect($accounts);
-
-        $data = $collection->map(function($item, $key) {
+        $data = $accounts->map(function($item, $key) {
   
             return ['id'            => $item->id, 
                     'account_name'  => $item->account_name, 
@@ -67,9 +65,7 @@ class AccountController extends Controller
     {
         $account = Account::findOrFail($id)->transactions;
 
-        $collection = collect($account);
-
-        $data = $collection->map(function($item, $key) {
+        $data = $account->map(function($item, $key) {
   
             return ['id'            => $item->id, 
                     'account_id'    => $item->account_id,
