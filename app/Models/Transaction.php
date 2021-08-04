@@ -16,7 +16,7 @@ class Transaction extends Model
     /**
      * A transaction belongs to a specific account
      *
-     * @return App\Models
+     * @return App\Models\Account
      */
     public function account()
     {

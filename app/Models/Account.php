@@ -16,11 +16,23 @@ class Account extends Model
     /**
      * An account has multiple transactions
      *
-     * @return App\Models
+     * @return App\Models\Transaction
      */
     public function transactions()
     {
         return $this->hasMany(Transaction::class);
+    }
+    
+    /**
+     * scopeGetTotalAmountOfTransactions
+     *
+     * @param  mixed $query
+     * @return Illuminate\Database\Eloquent\Model
+     */
+    public function scopeGetTotalAmountOfTransactions($query)
+    {
+        return $query->select('id', 'account_name')
+                        ->withSum('transactions', 'amount');
     }
 
 }

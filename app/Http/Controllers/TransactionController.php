@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Account;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
@@ -11,7 +10,8 @@ class TransactionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @param  \Illuminate\Http\Request $request
+     * @return mixed \Illuminate\Http\Response
      */
     public function create(Request $request)
     {
@@ -28,10 +28,10 @@ class TransactionController extends Controller
         {
             $transaction = Transaction::create($request->all());
         
-            return response()->json($transaction, 200);
+            return response()->json($transaction, 201);
         }else{
             return response()->json([   'message'  => 'Account was not found. Please input the correct account_id',
-                                        'error'    => 400  ]);
+                                        'error'    => 401  ]);
         }
     }
   

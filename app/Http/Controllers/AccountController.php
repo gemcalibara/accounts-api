@@ -3,30 +3,48 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
-use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller
 {
+    
+    /**
+     * __construct
+     *
+     * @param  mixed $account
+     * @return void
+     */
+    public function __construct(Account $account)
+    {
+        $this->account = $account;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return mixed \Illuminate\Http\Response
      */
     public function index()
     {
-        $accounts = Account::select('id', 'account_name')
-                                ->withSum('transactions', 'amount')
-                                ->get()
-                                ->toArray();
+        $accounts = $this->account->getTotalAmountOfTransactions()->get();
 
-        return response()->json($accounts);
+        $collection = collect($accounts);
+
+        $data = $collection->map(function($item, $key) {
+  
+            return ['id'            => $item->id, 
+                    'account_name'  => $item->account_name, 
+                    'total_amount'  => doubleval($item->transactions_sum_amount)];
+        });
+
+        return response()->json($data);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @param  \Illuminate\Http\Request $request
+     * @return mixed \Illuminate\Http\Response
      */
     public function create(Request $request)
     {
@@ -36,16 +54,16 @@ class AccountController extends Controller
 
         $account = Account::create($request->all());
 
-        return response()->json($account, 200);
+        return response()->json($account, 201);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int $id
-     * @return Response
+     * @return mixed \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
         $account = Account::findOrFail($id)->transactions;
 
