@@ -94,18 +94,14 @@ You should use github and the project should contain commit messages.
         "account_id": 1,
         "date": "2021-07-30",
         "description": "cash on hand",
-        "amount": 100.50,
-        "created_at": null,
-        "updated_at": null
+        "amount": 100.50
     },
     {
         "id": 2,
         "account_id": 1,
         "date": "2021-07-30",
         "description": "This is sample only",
-        "amount": 12.45,
-        "created_at": "2021-07-30 15:04:51",
-        "updated_at": "2021-07-30 15:04:51"
+        "amount": 12.45
     }
 
 ### Create a new transaction for a specific account
