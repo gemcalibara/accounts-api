@@ -49,17 +49,17 @@ You should use github and the project should contain commit messages.
         {
             "id": 1,
             "account_name": "cash",
-            "transactions_sum_amount": "8549.01"
+            "total_amount": 8549.01
         },
         {
             "id": 2,
             "account_name": "purchase",
-            "transactions_sum_amount": "73.78"
+            "total_amount": 73.78
         },
         {
             "id": 3,
             "account_name": "inventory",
-            "transactions_sum_amount": "6.78"
+            "total_amount": 6.78
         }
     ]
     
@@ -94,7 +94,7 @@ You should use github and the project should contain commit messages.
         "account_id": 1,
         "date": "2021-07-30",
         "description": "cash on hand",
-        "amount": "100.50",
+        "amount": 100.50,
         "created_at": null,
         "updated_at": null
     },
@@ -103,7 +103,7 @@ You should use github and the project should contain commit messages.
         "account_id": 1,
         "date": "2021-07-30",
         "description": "This is sample only",
-        "amount": "12.45",
+        "amount": 12.45,
         "created_at": "2021-07-30 15:04:51",
         "updated_at": "2021-07-30 15:04:51"
     }
@@ -123,7 +123,7 @@ You should use github and the project should contain commit messages.
         "account_id": "3",
         "description": "This is sample purchase",
         "date": "2021-07-31",
-        "amount": "6.78",
+        "amount": 6.78,
         "id": 17
     }
     
